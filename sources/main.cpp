@@ -7,14 +7,14 @@
 #include <utility>
 
 //int argc, char* argv[]
-//int main(){
+int main(){
   //if(argc > 1){
   //  std::string A(argv[1]);
   //  std::cout << A;
   //}
   //if(argc > 1)
   //dirParse B("aaaa");
-  //dirParse A("/Users/mishadolbnin/back/lab-04-boost-filesystem/ftp");
-  //std::cout << A;
-  //return 0;
-//}
+  dirParse A("/Users/mishadolbnin/back/lab-04-boost-filesystem/ftp");
+  std::cout << A;
+  return 0;
+}
