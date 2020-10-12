@@ -9,8 +9,7 @@ namespace file = boost::filesystem;
 
 dirParse::dirParse(const std::string& path){
   const std::regex re(
-      "^(balance_)\\d\\d\\d\\d\\d\\d\\d\\d_\\d\\d\\d\\d\\d\\d\\d\\d"
-      );
+      "^(balance_)\\d\\d\\d\\d\\d\\d\\d\\d_\\d\\d\\d\\d\\d\\d\\d\\d");
   if (!path.empty()) {
     if (file::exists(path)) {
       pathToFtp = path;
@@ -46,7 +45,7 @@ std::stringstream dirParse::printAccount(const file::path& elem) const{
 }
 
 std::ostream& operator <<(std::ostream& out, const dirParse& A){
-  for(const auto & el : A.pathArr) {
+  for (const auto & el : A.pathArr) {
     out << A.printAccount(el).str() << std::endl;
   }
   return out;
