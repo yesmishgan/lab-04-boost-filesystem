@@ -8,16 +8,20 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <set>
 
 namespace file = boost::filesystem;
 
 class dirParse {
  public:
-  std::stringstream printAccount(const file::path& elem) const;
   explicit dirParse(const std::string& path);
+  ~dirParse();
+
+  std::stringstream printAccount(const file::path& elem, unsigned int& n) const;
   friend std::ostream& operator <<(std::ostream& out, const dirParse& A);
  private:
   file::path pathToFtp;
+  std::set<std::string> nameAccounts;
   std::vector<file::path> pathArr;
 };
 

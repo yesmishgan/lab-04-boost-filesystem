@@ -28,25 +28,43 @@ dirParse::dirParse(const std::string& path){
                     << y.path().parent_path().filename().string() << " "
                     << y.path().filename().string() << '\n';
           pathArr.push_back(y.path());
+          nameAccounts.insert(y.path().stem().string().substr(8, 8));
         }
       }
     }
   }
 }
 
-std::stringstream dirParse::printAccount(const file::path& elem) const{
+std::stringstream dirParse::printAccount(const file::path& elem, unsigned int& n) const{
   std::stringstream ss;
   ss << "broker: " << std::left << std::setw(8)
      << elem.parent_path().filename().string()
      << " account: " << elem.stem().string().substr(8, 8)
-     << " files: " << std::setw(3) << 1
+     << " files: " << std::setw(3) << n
      << " lastdate: " << elem.stem().string().substr(17, 8);
   return ss;
 }
 
 std::ostream& operator <<(std::ostream& out, const dirParse& A){
-  for (const auto & el : A.pathArr) {
-    out << A.printAccount(el).str() << std::endl;
+  for (const auto & el : A.nameAccounts) {
+    std::vector<file::path> temp;
+    for (const auto & i : A.pathArr) {
+      if (el == i.stem().string().substr(8, 8)){
+        temp.push_back(i);
+      }
+    }
+    file::path max = temp[0];
+    unsigned int n = 0;
+    for(const auto & j : temp) {
+      if (max.stem().string().substr(17, 8)
+          < j.stem().string().substr(17, 8)) {
+        max = j;
+      }
+      n++;
+    }
+    out << A.printAccount(max, n).str() << std::endl;
   }
   return out;
 }
+
+dirParse::~dirParse() {}
