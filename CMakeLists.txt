@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.10)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -14,8 +14,8 @@ set(
 include("tools/gate/cmake/HunterGate.cmake")
 
 HunterGate(
-        URL "https://github.com/cpp-pm/hunter/archive/v0.23.275.tar.gz"
-        SHA1 "0952a54dc983ecbea09dfe8c53ee65d1e0e91232"
+        URL "https://github.com/cpp-pm/hunter/archive/v0.23.218.tar.gz"
+        SHA1 "9a3594a61227967fb92159339ba326701b287b19"
 )
 
 
@@ -57,7 +57,7 @@ target_include_directories(main
         PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
         )
 # TODO: change template word to project name and delete this comment
-target_link_libraries(tests ${Boost_FILESYSTEM_LIBRARY} template)
+target_link_libraries(tests ${Boost_FILESYSTEM_LIBRARY} GTest::gtest_main template)
 target_link_libraries(main ${Boost_FILESYSTEM_LIBRARY})
 enable_testing()
 add_test(NAME unit_tests COMMAND tests) 
