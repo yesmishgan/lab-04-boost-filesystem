@@ -36,7 +36,7 @@ dirParse::dirParse(const std::string& path){
 }
 
 std::stringstream dirParse::printAccount(const file::path& elem,
-                                         unsigned int& n) const{
+                                         const size_t& n) const{
   std::stringstream ss;
   ss << "broker: " << std::left << std::setw(8)
      << elem.parent_path().filename().string()
@@ -55,7 +55,7 @@ std::ostream& operator <<(std::ostream& out, const dirParse& A){
       }
     }
     file::path max = temp[0];
-    unsigned int n = 0;
+    size_t n = 0;
     for (const auto & j : temp) {
       if (max.stem().string().substr(17, 8)
           < j.stem().string().substr(17, 8)) {
@@ -69,3 +69,7 @@ std::ostream& operator <<(std::ostream& out, const dirParse& A){
 }
 
 dirParse::~dirParse() {}
+
+const file::path& dirParse::getPathToAccount(const size_t& n) const {
+  return pathArr[n];
+}

@@ -17,7 +17,8 @@ class dirParse {
   explicit dirParse(const std::string& path);
   ~dirParse();
 
-  std::stringstream printAccount(const file::path& elem, unsigned int& n) const;
+  const file::path& getPathToAccount(const size_t& n) const;
+  std::stringstream printAccount(const file::path& elem, const size_t& n) const;
   friend std::ostream& operator <<(std::ostream& out, const dirParse& A);
  private:
   file::path pathToFtp;

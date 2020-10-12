@@ -16,5 +16,6 @@ int main(){
   //dirParse B("aaaa");
   dirParse A("/Users/mishadolbnin/back/lab-04-boost-filesystem/ftp");
   std::cout << A;
+  std::cout << A.printAccount(A.getPathToAccount(0), 1).str();
   return 0;
 }

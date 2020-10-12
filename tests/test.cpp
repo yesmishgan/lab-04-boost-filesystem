@@ -7,6 +7,9 @@ TEST(Example, EmptyTest) {
     EXPECT_TRUE(true);
 }
 
-TEST(dirParse, test){
-  EXPECT_TRUE(true);
+TEST(dirParse, testFuncPrint){
+  dirParse A("/home/travis/build/yesmishgan/lab-04-boost-filesystem//ftp");
+  ASSERT_EQ(
+      A.printAccount(A.getPathToAccount(0), 1).str(),
+      "broker: bcs      account: 12341234 files: 1   lastdate: 20181001");
 }
