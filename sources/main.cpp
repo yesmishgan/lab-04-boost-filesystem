@@ -14,8 +14,7 @@ int main(){
   //}
   //if(argc > 1)
   //dirParse B("aaaa");
-  dirParse A("/Users/mishadolbnin/lab-04-boost-filesystem/ftp");
-  std::cout << "test!";
+  dirParse A("/Users/mishadolbnin/back/lab-04-boost-filesystem/ftp");
   std::cout << A;
   return 0;
 }
