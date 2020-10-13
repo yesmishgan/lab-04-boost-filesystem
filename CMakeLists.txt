@@ -42,9 +42,9 @@ add_executable(tests
   ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
         sources/dirParse.cpp include/dirParse.hpp)
 
-add_executable(main
-        ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
-        sources/dirParse.cpp include/dirParse.hpp)
+# add_executable(main
+#       ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
+#       sources/dirParse.cpp include/dirParse.hpp)
 
 # TODO: change template word to project name and delete this comment
 target_include_directories(template 
@@ -53,9 +53,9 @@ target_include_directories(template
 target_include_directories(tests 
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
-target_include_directories(main
-        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
-        )
+#target_include_directories(main
+#        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
+#        )
 # TODO: change template word to project name and delete this comment
 target_link_libraries(tests ${Boost_FILESYSTEM_LIBRARY} GTest::main template)
 target_link_libraries(main ${Boost_FILESYSTEM_LIBRARY})
