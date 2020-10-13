@@ -58,7 +58,7 @@ target_include_directories(tests
 #        )
 # TODO: change template word to project name and delete this comment
 target_link_libraries(tests ${Boost_FILESYSTEM_LIBRARY} GTest::main template)
-target_link_libraries(main ${Boost_FILESYSTEM_LIBRARY})
+#target_link_libraries(main ${Boost_FILESYSTEM_LIBRARY})
 enable_testing()
 add_test(NAME unit_tests COMMAND tests) 
 
