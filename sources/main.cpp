@@ -5,17 +5,15 @@
 #include <string>
 #include "dirParse.hpp"
 #include <utility>
-
-//int argc, char* argv[]
-int main(){
-  //if(argc > 1){
-  //  std::string A(argv[1]);
-  //  std::cout << A;
-  //}
-  //if(argc > 1)
-  //dirParse B("aaaa");
-  dirParse A("/Users/mishadolbnin/back/lab-04-boost-filesystem/ftp");
+/*
+int main(int argc, char* argv[]){
+  std::string path;
+  if(argc > 1){
+    path = argv[1];
+  }else{
+    path = "";
+  }
+  dirParse A(path);
   std::cout << A;
-  std::cout << A.printAccount(A.getPathToAccount(0), 1).str();
   return 0;
-}
+}*/
