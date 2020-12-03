@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.4)
+cmake_minimum_required(VERSION 3.10)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -14,8 +14,8 @@ set(
 include("tools/gate/cmake/HunterGate.cmake")
 
 HunterGate(
-  URL "https://github.com/cpp-pm/hunter/archive/v0.23.218.tar.gz"
-  SHA1 "9a3594a61227967fb92159339ba326701b287b19"
+        URL "https://github.com/cpp-pm/hunter/archive/v0.23.218.tar.gz"
+        SHA1 "9a3594a61227967fb92159339ba326701b287b19"
 )
 
 
@@ -28,15 +28,23 @@ string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 
+hunter_add_package(Boost COMPONENTS system filesystem)
+find_package(Boost CONFIG REQUIRED system filesystem)
+
 # TODO: change template word to project name and delete this comment
 add_library(template STATIC
   # enum your files and delete this comment
-  ${CMAKE_CURRENT_SOURCE_DIR}/sources/source.cpp
-)
+  #${CMAKE_CURRENT_SOURCE_DIR}/sources/source.cpp
+        sources/main.cpp sources/dirParse.cpp include/dirParse.hpp)
+include_directories(${Boost_INCLUDE_DIRS})
 add_executable(tests
   # TODO: enum your files and delete this comment
   ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
-)
+        sources/dirParse.cpp include/dirParse.hpp)
+
+# add_executable(main
+#       ${CMAKE_CURRENT_SOURCE_DIR}/sources/main.cpp
+#       sources/dirParse.cpp include/dirParse.hpp)
 
 # TODO: change template word to project name and delete this comment
 target_include_directories(template 
@@ -45,9 +53,12 @@ target_include_directories(template
 target_include_directories(tests 
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
+#target_include_directories(main
+#        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
+#        )
 # TODO: change template word to project name and delete this comment
-target_link_libraries(tests GTest::main template)
-
+target_link_libraries(tests ${Boost_FILESYSTEM_LIBRARY} GTest::main template)
+#target_link_libraries(main ${Boost_FILESYSTEM_LIBRARY})
 enable_testing()
 add_test(NAME unit_tests COMMAND tests) 
 
